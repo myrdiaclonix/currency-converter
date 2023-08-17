@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'currency-converter';
+  title = 'Conversor de Moedas';
+  menuTab = ['Listagem de Moedas', 'Conversão de Moedas', 'Histórico de Conversões'];
 }
