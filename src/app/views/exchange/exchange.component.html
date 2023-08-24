@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="row justify-content-center p-3">
+        <div class="col-md-10">
+            <div class="row justify-content-center">
+                <div class="col-lg-4 d-flex justify-content-center">
+                    <mat-form-field>
+                        <mat-label>Moeda de origem</mat-label>
+                        <mat-select [formControl]="firstSymbolControl" required>
+                            <mat-option *ngFor="let symbol of symbols" [value]="symbol">
+                                {{symbol.code}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="firstSymbolControl.hasError('required')">Por favor escolha uma
+                            moeda</mat-error>
+                        <mat-hint>{{firstSymbolControl.value?.desc}}</mat-hint>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 d-flex justify-content-center">
+                    <mat-form-field>
+                        <mat-label>Valor</mat-label>
+                        <input matInput type="number" step="0.01" [(ngModel)]="value">
+                        <!-- <button #ngIf="value" matSuffix mat-icon-button aria-label="Limpar campo" (click)="value=''">
+                            <mat-icon>close</mat-icon>
+                        </button> -->
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 d-flex justify-content-center">
+                    <mat-form-field>
+                        <mat-label>Moeda de destino</mat-label>
+                        <mat-select [formControl]="secondSymbolControl" required>
+                            <mat-option *ngFor="let symbol of symbols" [value]="symbol">
+                                {{symbol.code}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="secondSymbolControl.hasError('required')">Por favor escolha uma
+                            moeda</mat-error>
+                        <mat-hint>{{secondSymbolControl.value?.desc}}</mat-hint>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col d-flex justify-content-center mt-3">
+                    <button mat-raised-button color="primary" (click)="convertCurrency()">Converter</button>
+                </div>
+            </div>
+
+            <div class="row justify-content-center mt-3">
+                <div class="col-lg-4 d-flex justify-content-center" *ngIf="convertedAmount !== null">
+                    <p class="lead">Valor convertido: {{ convertedAmount.toFixed(2)}} {{ secondSymbolControl.value?.code }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

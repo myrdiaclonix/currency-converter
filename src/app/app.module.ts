@@ -17,8 +17,7 @@ import { HomeComponent } from './views/home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
-    CurrencyListComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     AppRoutingModule,

@@ -1,8 +1,10 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort, Sort } from '@angular/material/sort';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 export interface CurrencySymbol {
   code: string;
@@ -12,7 +14,15 @@ export interface CurrencySymbol {
 @Component({
   selector: 'app-currency-list',
   templateUrl: './currency-list.component.html',
-  styleUrls: ['./currency-list.component.css']
+  styleUrls: ['./currency-list.component.css'],
+  standalone: true,
+  imports: [
+    MatFormFieldModule,
+    MatInputModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule
+  ],
 })
 export class CurrencyListComponent implements AfterViewInit, OnInit {
   displayedColumns: string[] = ['code', 'description'];
@@ -35,7 +45,6 @@ export class CurrencyListComponent implements AfterViewInit, OnInit {
         desc: res.symbols[code].description
       }));
       this.dataSource.data = this.currencySymbols;
-      console.log(this.currencySymbols);
     })
   }
 
