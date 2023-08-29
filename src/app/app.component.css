@@ -1,0 +1,10 @@
+nav {
+    background-color: #3f51b5;
+}
+a {
+    color: #fff;
+}
+.my-link:hover {
+    color: #fff;
+    text-decoration: underline;
+}

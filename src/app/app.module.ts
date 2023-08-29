@@ -11,13 +11,14 @@ import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
-import { CurrencyListComponent } from './views/currency-list/currency-list.component';
 import { HomeComponent } from './views/home/home.component';
+import { HistoryComponent } from './views/history/history.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    HistoryComponent,
   ],
   imports: [
     AppRoutingModule,

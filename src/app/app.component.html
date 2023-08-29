@@ -1,25 +1,25 @@
 <!-- Menu -->
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">{{ title }}</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="currency-list">{{ menuTab[0] }}</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="exchange">{{ menuTab[1] }}</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="history">{{ menuTab[2] }}</a>
-          </li>
-        </ul>
-      </div>
+<nav class="navbar navbar-expand-lg shadow-sm">
+  <div class="container-fluid">
+    <a class="navbar-brand my-link link-offset-2" href="#">{{ title }}</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link my-link link-offset-2" href="currency-list">{{ menuTab[0] }}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link my-link link-offset-2" href="exchange">{{ menuTab[1] }}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link my-link link-offset-2" href="history">{{ menuTab[2] }}</a>
+        </li>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
 
 <!-- A partir daqui os outros componentes serão abertos. -->
 <router-outlet></router-outlet>
