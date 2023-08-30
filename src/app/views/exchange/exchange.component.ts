@@ -68,7 +68,6 @@ export class ExchangeComponent implements OnInit {
       (response) => {
         this.convertedValue = response.result;
 
-        // Salvando na session storage.
         if (this.convertedValue !== 0) {
           this.saveSessionData(from, to, this.value, this.convertedValue, response.info.rate);
         }
@@ -82,19 +81,29 @@ export class ExchangeComponent implements OnInit {
   saveSessionData(from: string, to: string, inputValue: number, outputValue: number, exchangeRate: number): void {
     const currentDate = new Date();
 
-    const conversionData = {
-      date: currentDate.toISOString().slice(0, 10),
-      time: currentDate.toISOString().slice(11, 19),
-      from,
-      inputValue,
-      to,
-      outputValue,
-      exchangeRate
-    };
+    this.exchangeService.getExchangeRate(to, 'USD', 1).subscribe((response) => {
+      const valueUSD = outputValue * response.result;
+      const highValue = valueUSD > 10000;
 
-    const history = JSON.parse(sessionStorage.getItem('conversions') || '[]');
-    history.push(conversionData);
-    sessionStorage.setItem('conversions', JSON.stringify(history));
+      const conversionData = {
+        date: currentDate.toISOString().slice(0, 10),
+        time: currentDate.toISOString().slice(11, 19),
+        from,
+        inputValue,
+        to,
+        outputValue,
+        exchangeRate,
+        highValue
+      };
+
+      const history = JSON.parse(sessionStorage.getItem('conversions') || '[]');
+      history.push(conversionData);
+      sessionStorage.setItem('conversions', JSON.stringify(history));
+    },
+      (error) => {
+        console.error('Erro ao obter taxa de câmbio:', error);
+      }
+    );
   }
 
   getConversionHistory(): any[] {
