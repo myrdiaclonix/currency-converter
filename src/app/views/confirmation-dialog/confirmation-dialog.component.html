@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>Confirmação</h2>
+<div mat-dialog-content>
+    Tem certeza que deseja excluir esta conversão?
+</div>
+<div mat-dialog-actions>
+    <button class="btn btn-outline-primary m-2" mat-dialog-close>Não</button>
+    <button class="btn btn-outline-primary m-2" [mat-dialog-close]="true" cdkFocusInitial>Sim</button>
+</div>

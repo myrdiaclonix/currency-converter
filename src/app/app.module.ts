@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
@@ -26,6 +27,7 @@ import { HistoryComponent } from './views/history/history.component';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
     MatTableModule,

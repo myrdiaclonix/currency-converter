@@ -86,6 +86,7 @@ export class ExchangeComponent implements OnInit {
       const highValue = valueUSD > 10000;
 
       const conversionData = {
+        id: new Date().getTime(),
         date: currentDate.toISOString().slice(0, 10),
         time: currentDate.toISOString().slice(11, 19),
         from,

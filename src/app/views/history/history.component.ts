@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort, Sort } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-history',
@@ -8,12 +10,12 @@ import { MatSort, Sort } from '@angular/material/sort';
   styleUrls: ['./history.component.css']
 })
 export class HistoryComponent implements OnInit {
-  displayedColumns: string[] = ['date', 'time', 'inputValue', 'from', 'outputValue', 'to', 'exchangeRate'];
+  displayedColumns: string[] = ['date', 'time', 'inputValue', 'from', 'outputValue', 'to', 'exchangeRate', 'deleteEntry'];
   dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor() {
+  constructor(private dialog: MatDialog) {
     this.dataSource = new MatTableDataSource();
   }
 
@@ -51,5 +53,26 @@ export class HistoryComponent implements OnInit {
 
   compare(a: string | number, b: string | number, isAsc: boolean): number {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+  }
+
+  deleteEntry(conversion: any): void {
+    const existingConversions = JSON.parse(sessionStorage.getItem('conversions') || '[]');
+
+    const indexToRemove = existingConversions.findIndex((item: any) => item.id === conversion.id);
+    if (indexToRemove !== -1) {
+      existingConversions.splice(indexToRemove, 1);
+      sessionStorage.setItem('conversions', JSON.stringify(existingConversions));
+      this.loadData();
+    }
+  }
+
+  openConfirmationDialog(conversion: any): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteEntry(conversion);
+      }
+    })
   }
 }

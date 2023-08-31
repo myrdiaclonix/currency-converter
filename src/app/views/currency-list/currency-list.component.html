@@ -28,8 +28,10 @@
                         <td class="mat-cell" colspan="2">No data matching the filter "{{input.value}}"</td>
                     </tr>
                 </table>
-
-                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of currencies" [pageSize]="5" showFirstLastButtons></mat-paginator>
+                <div>
+                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of currencies"
+                        [pageSize]="5" showFirstLastButtons class="pb-2"></mat-paginator>
+                </div>
             </div>
         </div>
     </div>
